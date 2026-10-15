@@ -24,15 +24,17 @@ export class StudentReportService {
   getReports(): Observable<StudentReport[]> {
     return this.http.get<Student[]>('https://careli2021.github.io/api_examen/api/estudiante.json').pipe(
       map((students) => students.map((student) => {
-        const suma = student.nota1 + student.nota2 + student.nota3;
-        const promedio = Math.round((suma / 3) * 100) / 100;
+        const sumanot = student.nota1 + student.nota2 + student.nota3;
+        const prom = sumanot / 3;
+        const estacad = prom >= 13 ? 'Aprobado' : 'Desaprobado';
+        const observacion = prom >= 17 ? 'Excelente' : prom > 12 && prom < 17 ? 'Regular' : 'En riesgo';
 
         return {
           ...student,
-          suma,
-          promedio,
-          estado: promedio >= 13 ? 'Aprobado' : 'Desaprobado',
-          observacion: promedio >= 17 ? 'Excelente' : promedio >= 13 ? 'Regular' : 'En riesgo',
+          suma: sumanot,
+          promedio: prom,
+          estado: estacad,
+          observacion,
         };
       })),
     );

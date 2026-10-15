@@ -33,7 +33,7 @@
       <p>Nota 2: {{ selected.nota2 }}</p>
       <p>Nota 3: {{ selected.nota3 }}</p>
       <p>Suma de notas: {{ selected.suma }}</p>
-      <p>Promedio: {{ selected.promedio }}</p>
+      <p>Promedio: {{ selected.promedio | number: '1.2-2' }}</p>
       <p>Estado académico: {{ selected.estado }}</p>
       <p>Observación: {{ selected.observacion }}</p>
     </section>
