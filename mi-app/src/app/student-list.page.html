@@ -1,0 +1,29 @@
+<main class="container">
+  <h1>Reporte de notas</h1>
+
+  <p *ngIf="loading()">Cargando estudiantes...</p>
+  <p *ngIf="error()">No se pudo cargar la lista de estudiantes.</p>
+
+  <table *ngIf="!loading() && !error()">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of reports()">
+        <td>{{ student.nombre }}</td>
+        <td>{{ student.nota1 }}</td>
+        <td>{{ student.nota2 }}</td>
+        <td>{{ student.nota3 }}</td>
+        <td>
+          <button [routerLink]="['/estudiantes', student.id]">Detalle</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
