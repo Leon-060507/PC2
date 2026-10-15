@@ -1,0 +1,47 @@
+<main class="container">
+  <a *ngIf="student" routerLink="/">Volver a la lista</a>
+
+  <h1 *ngIf="!student">Reporte de notas</h1>
+  <p *ngIf="loading">Consultando estudiantes...</p>
+  <p *ngIf="error">{{ error }}</p>
+
+  <ng-container *ngIf="!loading && !error">
+    <table *ngIf="!student">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of students">
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.nota1 }}</td>
+          <td>{{ item.nota2 }}</td>
+          <td>{{ item.nota3 }}</td>
+          <td><button [routerLink]="['/estudiantes', item.id]">Detalle</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section *ngIf="student as selected">
+      <h1>Detalle de {{ selected.nombre }}</h1>
+      <p>Nota 1: {{ selected.nota1 }}</p>
+      <p>Nota 2: {{ selected.nota2 }}</p>
+      <p>Nota 3: {{ selected.nota3 }}</p>
+      <p>Suma de notas: {{ selected.suma }}</p>
+      <p>Promedio: {{ selected.promedio }}</p>
+      <p>Estado académico: {{ selected.estado }}</p>
+      <p>Observación: {{ selected.observacion }}</p>
+    </section>
+
+    <p *ngIf="!student && students.length === 0">No hay estudiantes para mostrar.</p>
+  </ng-container>
+
+  <p *ngIf="studentNotFound">
+    No se encontró al estudiante solicitado.
+  </p>
+</main>
