@@ -1,0 +1,61 @@
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+.table-wrap {
+  overflow-x: auto;
+}
+.tabla-estud {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+.tabla-estud th,
+.tabla-estud td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d9e2dc;
+  text-align: left;
+}
+.tabla-estud th {
+  background: #eaf2ed;
+  color: #263b30;
+  font-weight: 600;
+}
+.tabla-estud tbody tr:nth-child(even) {
+  background: #f7f9f7;
+}
+.tabla-estud tbody tr:hover {
+  background: #edf5ef;
+}
+button {
+  padding: 7px 12px;
+  border: 1px solid #9db5a5;
+  border-radius: 4px;
+  background: #fff;
+  color: #24583a;
+  cursor: pointer;
+}
+button:hover {
+  background: #eaf2ed;
+}
+.back-button {
+  margin-bottom: 16px;
+}
+section {
+  margin-top: 24px;
+}
+.detail-table {
+  max-width: 620px;
+}
+.detail-table th {
+  width: 45%;
+}
+@media (max-width: 600px) {
+  .tabla-estud {
+    min-width: 620px;
+  }
+  .detail-table {
+    min-width: 0;
+  }
+}

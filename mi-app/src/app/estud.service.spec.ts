@@ -1,24 +1,24 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { StudentReport, StudentReportService } from './student-report.service';
+import { EstudReporte, EstudReporteService } from './estud.service';
 
-describe('StudentReportService', () => {
-  let service: StudentReportService;
+describe('EstudReporteService', () => {
+  let service: EstudReporteService;
   let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
-    service = TestBed.inject(StudentReportService);
+    service = TestBed.inject(EstudReporteService);
     httpController = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => httpController.verify());
 
   it('calculates sums, averages, academic status, and observations at the cutoffs', () => {
-    let reports: StudentReport[] = [];
+    let reports: EstudReporte[] = [];
 
     service.getReports().subscribe((result) => (reports = result));
 

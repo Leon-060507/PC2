@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { StudentPage } from './student.page';
+import { EstudPage } from './estud';
 
 export const routes: Routes = [
-	{ path: '', component: StudentPage, title: 'Reporte de estudiantes' },
-	{ path: 'estudiantes/:id', component: StudentPage, title: 'Detalle del estudiante' },
+	{ path: '', component: EstudPage, title: 'Reporte de estudiantes' },
+	{ path: 'estudiantes/:id', component: EstudPage, title: 'Detalle del estudiante' },
 	{ path: '**', redirectTo: '' },
 ];

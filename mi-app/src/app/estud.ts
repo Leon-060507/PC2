@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { StudentReport, StudentReportService } from './student-report.service';
+import { EstudReporte, EstudReporteService } from './estud.service';
 
 @Component({
   imports: [CommonModule, RouterLink],
-  selector: 'app-student-page',
-  styleUrl: './student.page.css',
-  templateUrl: './student.page.html',
+  selector: 'app-estud-page',
+  styleUrl: './estud.css',
+  templateUrl: './estud.html',
 })
-export class StudentPage implements OnInit {
-  students: StudentReport[] = [];
-  student?: StudentReport;
+export class EstudPage implements OnInit {
+  estudiantes: EstudReporte[] = [];
+  estud?: EstudReporte;
   loading = true;
   error = '';
-  studentNotFound = false;
+  estudNoEncontrado = false;
 
   constructor(
-    private service: StudentReportService,
+    private service: EstudReporteService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
   ) {}
@@ -25,10 +25,10 @@ export class StudentPage implements OnInit {
   ngOnInit(): void {
     this.service.getReports().subscribe({
       next: (reports) => {
-        this.students = reports;
+        this.estudiantes = reports;
         const id = this.route.snapshot.paramMap.get('id');
-        this.student = id ? reports.find((item) => item.id === Number(id)) : undefined;
-        this.studentNotFound = Boolean(id) && !this.student;
+        this.estud = id ? reports.find((item) => item.id === Number(id)) : undefined;
+        this.estudNoEncontrado = Boolean(id) && !this.estud;
         this.loading = false;
         this.cdr.detectChanges();
       },

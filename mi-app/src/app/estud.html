@@ -1,0 +1,55 @@
+<main class="container">
+  <button *ngIf="estud" class="back-button" type="button" routerLink="/">Volver a la lista</button>
+
+  <h1 *ngIf="!estud">Reporte de notas</h1>
+  <p *ngIf="loading">Consultando estudiantes...</p>
+  <p *ngIf="error">{{ error }}</p>
+
+  <ng-container *ngIf="!loading && !error">
+    <div class="table-wrap" *ngIf="!estud">
+      <table class="tabla-estud">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Nota 3</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of estudiantes">
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.nota1 }}</td>
+            <td>{{ item.nota2 }}</td>
+            <td>{{ item.nota3 }}</td>
+            <td><button [routerLink]="['/estudiantes', item.id]">Detalle</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section *ngIf="estud as selected">
+      <h1>Detalle de {{ selected.nombre }}</h1>
+      <div class="table-wrap">
+        <table class="tabla-estud detail-table">
+          <tbody>
+            <tr><th>Nota 1</th><td>{{ selected.nota1 }}</td></tr>
+            <tr><th>Nota 2</th><td>{{ selected.nota2 }}</td></tr>
+            <tr><th>Nota 3</th><td>{{ selected.nota3 }}</td></tr>
+            <tr><th>Suma de notas</th><td>{{ selected.suma }}</td></tr>
+            <tr><th>Promedio</th><td>{{ selected.promedio | number: '1.2-2' }}</td></tr>
+            <tr><th>Estado académico</th><td>{{ selected.estado }}</td></tr>
+            <tr><th>Observación</th><td>{{ selected.observacion }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p *ngIf="!estud && estudiantes.length === 0">No hay estudiantes para mostrar.</p>
+  </ng-container>
+
+  <p *ngIf="estudNoEncontrado">
+    No se encontró al estudiante solicitado.
+  </p>
+</main>
